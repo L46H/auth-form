@@ -13,18 +13,20 @@
                 type="text"
                 class="form-control"
                 id="username"
-                formControlName="username"
+                formControlName="usernamee"
               />
             </div>
+            {{ authForm.get('username')?.errors | json}}
             <div class="mb-3">
-              <label for="password" class="form-label">Email</label>
+              <label for="email" class="form-label">Email</label>
               <input
                 type="text"
                 class="form-control"
-                id="password"
+                id="email"
                 formControlName="email"
               />
             </div>
+            {{ authForm.get('email')?.errors | json}}
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
               <input
@@ -34,9 +36,21 @@
                 formControlName="password"
               />
             </div>
+            {{ authForm.get('password')?.errors | json}}
+            <div class="mb-3">
+              <label for="passwordConfirmation" class="form-label">Password Confirmation</label>
+              <input
+                type="password"
+                class="form-control"
+                id="passwordConfirmation"
+                formControlName="passwordConfirmation"
+              />
+            </div>
+            {{ authForm.get('passwordConfirmation')?.errors | json}}
             <div class="d-grid">
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
+            {{ authForm.errors | json}}
           </form>
         </div>
       </div>
