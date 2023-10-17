@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatchPassword } from '../validators/match-password';
+import { MatchPassword } from '../validator/match-password';
+
 
 @Component({
   selector: 'app-signup',

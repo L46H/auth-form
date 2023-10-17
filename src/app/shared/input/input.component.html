@@ -1,1 +1,26 @@
-<p>input works!</p>
+<div class="mb-3">
+  <label for="username" class="form-label">{{ label }}</label>
+  <input
+    [formControl]="control"
+    [type]="inputType"
+    type="text"
+    class="form-control"
+    id="username"
+  />
+  <div *ngIf="showErrors()" class="text-danger">
+    <p *ngIf="control.errors?.['required']">Value is required</p>
+    <p *ngIf="control.errors?.['minlength']">
+      Value you entered is
+      {{control.errors?.['minlength']?.['actualLength']}} characters long, but it
+      must be at aleast {{control.errors?.['minlength']?.['requiredLength']}}
+    </p>
+    <p *ngIf="control.errors?.['maxlength']">
+      Value you entered is
+      {{control.errors?.['maxlength']?.['actualLength']}} characters long, but it
+      cannot be longer than {{control.errors?.['maxlength']?.['requiredLength']}}
+      characters
+    </p>
+    <p *ngIf="control.errors?.['pattern']">Invalid format</p>
+    <p *ngIf="control.errors?.['noConnection']">Sorry, it appears that you are currently offline</p>
+  </div>
+</div>

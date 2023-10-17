@@ -7,50 +7,48 @@
         </div>
         <div class="card-body">
           <form [formGroup]="authForm">
-            <div class="mb-3">
-              <label for="username" class="form-label">Username</label>
-              <input
-                type="text"
-                class="form-control"
-                id="username"
-                formControlName="usernamee"
-              />
+            <app-input
+              inputType="text"
+              label="Username"
+              [control]="$any(authForm.get('username'))"
+            >
+            </app-input>
+            <app-input
+              inputType="text"
+              label="Email"
+              [control]="$any(authForm.get('email'))"
+            >
+            </app-input>
+            <app-input
+              inputType="password"
+              label="Password"
+              [control]="$any(authForm.get('password'))"
+            >
+            </app-input>
+            <app-input
+              inputType="password"
+              label="Password Confirmation"
+              [control]="$any(authForm.get('passwordConfirmation'))"
+            >
+            </app-input>
+
+            <div
+              *ngIf="
+                authForm.get('password')?.touched &&
+                authForm.get('passwordConfirmation')?.touched &&
+                authForm.errors
+              "
+              class="text-danger"
+            >
+              <p *ngIf="authForm.errors?.['passwordDontMatch']">
+                Password and Password Confirmation must match
+              </p>
             </div>
-            {{ authForm.get('username')?.errors | json}}
-            <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input
-                type="text"
-                class="form-control"
-                id="email"
-                formControlName="email"
-              />
-            </div>
-            {{ authForm.get('email')?.errors | json}}
-            <div class="mb-3">
-              <label for="password" class="form-label">Password</label>
-              <input
-                type="password"
-                class="form-control"
-                id="password"
-                formControlName="password"
-              />
-            </div>
-            {{ authForm.get('password')?.errors | json}}
-            <div class="mb-3">
-              <label for="passwordConfirmation" class="form-label">Password Confirmation</label>
-              <input
-                type="password"
-                class="form-control"
-                id="passwordConfirmation"
-                formControlName="passwordConfirmation"
-              />
-            </div>
-            {{ authForm.get('passwordConfirmation')?.errors | json}}
+
             <div class="d-grid">
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
-            {{ authForm.errors | json}}
+            {{ authForm.errors | json }}
           </form>
         </div>
       </div>
