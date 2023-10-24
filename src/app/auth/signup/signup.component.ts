@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatchPassword } from '../validator/match-password';
-
+import { AuthService } from '../auth.service';
+import { SignupCredentials } from '../interface/SignupCredentials.interface';
 
 @Component({
   selector: 'app-signup',
@@ -9,6 +10,7 @@ import { MatchPassword } from '../validator/match-password';
   styleUrls: ['./signup.component.scss'],
   providers: [MatchPassword]
 })
+
 export class SignupComponent {
   authForm = new FormGroup(
     {
@@ -36,5 +38,25 @@ export class SignupComponent {
     { validators: [this.matchPassword.validate] }
   );
 
-  constructor(private matchPassword: MatchPassword) {}
+  constructor(
+    private matchPassword: MatchPassword,
+    private authService: AuthService
+  ) {}
+
+  onSubmit() {
+    if (this.authForm.invalid) {
+      return;
+    }
+
+    this.authService.signup(this.authForm.value as SignupCredentials).subscribe(
+      response => {
+        console.log(response);
+        console.log(this.authForm.value);
+      },
+      error => {
+        console.error('registration erorr:', error);
+        console.log('Validation errors:', error.error.errors);
+      }
+    );
+  }
 }
