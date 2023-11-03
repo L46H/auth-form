@@ -10,7 +10,6 @@ import { SignupCredentials } from '../interface/SignupCredentials.interface';
   styleUrls: ['./signup.component.scss'],
   providers: [MatchPassword]
 })
-
 export class SignupComponent {
   authForm = new FormGroup(
     {
@@ -43,20 +42,18 @@ export class SignupComponent {
     private authService: AuthService
   ) {}
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.authForm.invalid) {
       return;
     }
 
-    this.authService.signup(this.authForm.value as SignupCredentials).subscribe(
-      response => {
-        console.log(response);
-        console.log(this.authForm.value);
-      },
-      error => {
-        console.error('registration erorr:', error);
-        console.log('Validation errors:', error.error.errors);
-      }
-    );
+    const request: SignupCredentials = {
+      user: this.authForm.value
+    };
+
+    this.authService.signup(request).subscribe(response => {
+      console.log(request.user);
+      console.log(response);
+    });
   }
 }

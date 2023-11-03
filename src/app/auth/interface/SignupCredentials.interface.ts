@@ -1,8 +1,8 @@
 export interface SignupCredentials {
   user: {
-    username: string;
-    email: string;
-    password: string;
-    passwordConfirmation: string;
+    username?: string | null;
+    email?: string | null;
+    password?: string | null;
+    passwordConfirmation?: string | null;
   };
 }
