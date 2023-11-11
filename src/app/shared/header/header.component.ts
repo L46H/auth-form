@@ -1,14 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../auth/auth.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
-  isNavbarCollapsed = true;
+export class HeaderComponent implements OnInit {
+  signedin$!: BehaviorSubject<boolean>;
 
-  toggleNavbar() {
-    this.isNavbarCollapsed = !this.isNavbarCollapsed;
+  constructor(private authService: AuthService) {}
+
+  ngOnInit(): void {
+    this.signedin$ = this.authService.signedin$;
   }
 }
