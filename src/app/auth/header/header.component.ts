@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../auth/auth.service';
+import { AuthService } from '../auth.service';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
@@ -14,5 +14,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.signedin$ = this.authService.signedin$;
+
+    this.authService.checkAuth().subscribe(() => {});
   }
 }

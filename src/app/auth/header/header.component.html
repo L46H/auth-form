@@ -1,0 +1,32 @@
+<nav class="navbar navbar-light">
+  <div class="container-fluid justify-content-md-around">
+    <a class="navbar-brand text-primary" routerLink="/">Auth Form</a>
+    <ul class="navbar-nav flex-row">
+      <ng-container *ngIf="!(signedin$ | async)">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            Sign in
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/signup" routerLinkActive="active"
+            >Sign up</a
+          >
+        </li>
+      </ng-container>
+      <ng-container *ngIf="signedin$ | async">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/logout" routerLinkActive="active"
+            >Log out
+          </a>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+</nav>

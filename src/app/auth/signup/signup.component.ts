@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatchPassword } from '../validator/match-password';
 import { AuthService } from '../auth.service';
-import { SignupCredentials } from '../interface/SignupCredentials.interface';
 
 @Component({
   selector: 'app-signup',
@@ -18,10 +17,6 @@ export class SignupComponent {
         Validators.minLength(3),
         Validators.maxLength(20),
         Validators.pattern(/^[a-z0-9]+$/)
-      ]),
-      email: new FormControl('', [
-        Validators.required,
-        Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
       ]),
       password: new FormControl('', [
         Validators.required,
@@ -47,11 +42,7 @@ export class SignupComponent {
       return;
     }
 
-    const request: SignupCredentials = {
-      user: this.authForm.value
-    };
-
-    this.authService.signup(request).subscribe({
+    this.authService.signup(this.authForm.value).subscribe({
       next: response => {},
       error: error => {
         console.log(error);
