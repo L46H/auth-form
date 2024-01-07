@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, tap } from 'rxjs';
 import { SignupCredentials } from './interface/SignupCredentials.interface';
 import { SignupResponse } from './interface/SignupResponse.interface';
+import { SigenedinResponse } from './interface/SigninResponse.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -24,12 +25,18 @@ export class AuthService {
   }
 
   checkAuth() {
-    return this.http
-      .get(`${this.url}/auth/signedin`)
-      .pipe(
-        tap(response => {
-          console.log(response);
-        })
-      );
+    return this.http.get<SigenedinResponse>(`${this.url}/auth/signedin`).pipe(
+      tap(({ authenticated }) => {
+        this.signedin$.next(authenticated);
+      })
+    );
+  }
+
+  signout() {
+    return this.http.post(`${this.url}/auth/signout`, {}).pipe(
+      tap(() => {
+        this.signedin$.next(false);
+      })
+    )
   }
 }
