@@ -45,7 +45,6 @@ export class SignupComponent {
     this.authService.signup(this.authForm.value).subscribe({
       next: response => {},
       error: error => {
-        console.log(error);
         if (!error.status) {
           this.authForm.setErrors({ noConnection: true });
         } else {

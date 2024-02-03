@@ -1,7 +1,11 @@
-.navbar-nav.flex-row .nav-item {
-  margin-right: 15px;
-}
-
 a:hover {
   cursor: pointer;
+}
+
+.navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+  border-bottom: 2px black solid;
+}
+
+.nav-link {
+  padding-bottom: 2px;
 }

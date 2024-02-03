@@ -1,1 +1,40 @@
-<p>signin works!</p>
+<div class="container pt-5">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="text-center">Sign In</h4>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="onSubmit()" [formGroup]="authForm">
+            <app-input
+              inputType="text"
+              label="Username"
+              [control]="$any(authForm.get('username'))"
+            >
+            </app-input>
+            <app-input
+              inputType="password"
+              label="Password"
+              [control]="$any(authForm.get('password'))"
+            >
+            </app-input>
+            <div
+              *ngIf="authForm.get('password')?.touched && authForm.errors"
+              class="text-danger"
+            >
+              <p *ngIf="authForm.errors?.['noConnection']">
+                No internet connection detected, failed to Sign Up
+              </p>
+              <p *ngIf="authForm.errors?.['unknownError']">Failed to Sign Up</p>
+            </div>
+
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

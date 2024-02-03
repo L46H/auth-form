@@ -1,4 +1,3 @@
-export interface SigenedinResponse {
-  authenticated: boolean;
+export interface SigninResponse {
   username: string;
 }
