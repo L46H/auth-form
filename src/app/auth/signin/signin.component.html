@@ -23,10 +23,13 @@
               *ngIf="authForm.get('password')?.touched && authForm.errors"
               class="text-danger"
             >
-              <p *ngIf="authForm.errors?.['noConnection']">
-                No internet connection detected, failed to Sign Up
+              <p *ngIf="authForm.errors?.['credentials']">
+                Invalid username or password
               </p>
-              <p *ngIf="authForm.errors?.['unknownError']">Failed to Sign Up</p>
+              <p *ngIf="authForm.errors?.['noConnection']">
+                No internet connection detected, failed to Sign In
+              </p>
+              <p *ngIf="authForm.errors?.['unknownError']">Failed to Sign In</p>
             </div>
 
             <div class="d-grid">

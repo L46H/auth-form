@@ -31,8 +31,10 @@ export class SigninComponent {
 
     this.authService.signin(this.authForm.value).subscribe({
       next: response => {},
-      error: error => {
-        if (!error.status) {
+      error: ({ error }) => {
+        if (error.username || error.password) {
+          this.authForm.setErrors({ credentials: true });
+        } else if (!error.status) {
           this.authForm.setErrors({ noConnection: true });
         } else {
           this.authForm.setErrors({ unknownError: true });
