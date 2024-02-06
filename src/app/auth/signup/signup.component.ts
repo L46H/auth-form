@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatchPassword } from '../validator/match-password';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -34,8 +35,9 @@ export class SignupComponent {
 
   constructor(
     private matchPassword: MatchPassword,
-    private authService: AuthService
-  ) {}
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
   onSubmit(): void {
     if (this.authForm.invalid) {
@@ -43,7 +45,9 @@ export class SignupComponent {
     }
 
     this.authService.signup(this.authForm.value).subscribe({
-      next: response => {},
+      next: response => {
+        this.router.navigateByUrl('/home/account-created');
+      },
       error: error => {
         if (!error.status) {
           this.authForm.setErrors({ noConnection: true });

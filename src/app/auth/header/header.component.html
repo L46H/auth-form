@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light">
   <div class="container-fluid justify-content-md-around">
-    <a class="navbar-brand text-primary fs-3" routerLink="/">Auth Form</a>
+    <a class="navbar-brand text-primary fs-3" routerLink="/signin">Auth Form</a>
     <ul class="navbar-nav flex-row">
       <ng-container *ngIf="!(signedin$ | async)">
         <li class="nav-item fs-3 mx-4">
@@ -21,7 +21,12 @@
         </li>
       </ng-container>
       <ng-container *ngIf="signedin$ | async">
-        <li class="nav-item fs-2">
+        <li class="nav-item fs-3 mx-4">
+          <a class="nav-link" routerLink="/home" routerLinkActive="active"
+            >Home
+          </a>
+        </li>
+        <li class="nav-item fs-3">
           <a class="nav-link" routerLink="/signout" routerLinkActive="active"
             >Sign out
           </a>
