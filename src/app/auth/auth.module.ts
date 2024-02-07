@@ -8,6 +8,7 @@ import { SignupComponent } from './signup/signup.component';
 import { SharedModule } from '../shared/shared.module';
 import { HeaderComponent } from './header/header.component';
 import { SignoutComponent } from './signout/signout.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { SignoutComponent } from './signout/signout.component';
     SigninComponent,
     SignupComponent,
     HeaderComponent,
-    SignoutComponent
+    SignoutComponent,
+    PageNotFoundComponent
   ],
   imports: [
     CommonModule,
